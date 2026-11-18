@@ -87,4 +87,4 @@ Not a rulebook, but the most authoritative source for **your table**: Aldric's r
 Nothing more for now: raw GitHub files already work. Optionally, allow `api.open5e.com` if we want live API queries later.
 
 ### Current verification status
-I checked every rule claim in guides 01–04 and the game against the 5etools XPHB data. All levels, action types, ranges and steed stats match.
+I spot-checked the key claims in guides 01–04 and the game against the 5etools 2024 Player's Handbook (XPHB) data: Paladin feature levels; the action type and range of Divine Smite, Hunter's Mark, Shield of Faith, Lesser Restoration, Find Steed and Command; and the full Otherworldly Steed stat block. All match. A full line-by-line audit is a good first job for the lookup helper.
