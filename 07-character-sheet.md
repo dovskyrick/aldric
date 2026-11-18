@@ -163,6 +163,7 @@ Sacred Flame · Thaumaturgy
 ---
 
 ## Campaign Notes (from session prep)
-- **Arendir Starweaver**, **Urungoth**, **Zrrquel** (general)
+- **Arendir Starweaver**: went out looking for his wife, **Selene**
+- **Urungoth**, **Zrrquel** (general)
 - **Dawn Wood** · a tree with initials · the **Adamantine Gate**
 - We have the **password for the portal**
