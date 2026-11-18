@@ -5,12 +5,14 @@ import workflows from '../../01-paladin-turn-workflows.md?raw'
 import steed from '../../04-faithful-steed-guide.md?raw'
 import level6 from '../../02-level-5-to-6-changes.md?raw'
 import audit from '../../06-level-6-audit.md?raw'
+import sheet from '../../07-character-sheet.md?raw'
 
 const TABS = [
   { id: 'battle', label: 'Battle Paths (Lv 6)', md: battle },
   { id: 'workflows', label: 'Turn Workflows', md: workflows },
   { id: 'steed', label: 'Steed & Mounting', md: steed },
   { id: 'level6', label: 'Level 5 → 6', md: level6 },
+  { id: 'sheet', label: 'Character Sheet', md: sheet },
   { id: 'audit', label: 'Rules Audit', md: audit },
 ]
 
