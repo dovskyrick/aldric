@@ -1,0 +1,168 @@
+// 1 world unit = 5 ft (one grid square)
+export const FT = 1 / 5
+
+// cost: none | slot1 | slot2 | cd (Channel Divinity) | loh (Lay on Hands) | smite (free use, else 1st slot) | steed (free use, else 2nd slot)
+// target: enemy | self | point | none
+export const SKILLS = [
+  {
+    id: 'attack', key: 'A', icon: '⚔', name: 'DuskMare — Attack (Extra Attack)',
+    kind: 'Action', cost: 'none', rangeFt: 5, target: 'enemy',
+    stats: '+9 to hit · 1d8+6 bludgeoning or slashing · Reach 5 ft',
+    desc: 'Take the Attack action and swing DuskMare twice (Extra Attack). Mastery Push: on a hit you can push a Large or smaller target 10 ft away.',
+    tip: 'Declare Vow of Enmity (R) as part of this action. Smite (Q) comes after a hit.',
+    visuals: [{ kind: 'swing', ttl: 300 }, { kind: 'swing', ttl: 300, delay: 350, flip: true }],
+  },
+  {
+    id: 'smite', key: 'Q', icon: '✦', name: 'Divine Smite',
+    kind: 'Bonus Action', cost: 'smite', rangeFt: 5, target: 'enemy',
+    stats: '2d8 radiant (+1d8 per slot level above 1st, +1d8 vs Undead/Fiends)',
+    desc: 'Cast right after you hit a creature with a melee weapon. The first one each Long Rest is free (Paladin\'s Smite); after that it spends a spell slot.',
+    tip: 'On a critical hit every smite die is doubled. Save it for crits.',
+    visuals: [{ kind: 'burst', color: '#ffd54a', ttl: 700 }, { kind: 'pillar', color: '#ffe680', ttl: 500 }],
+  },
+  {
+    id: 'mark', key: 'W', icon: '◎', name: "Hunter's Mark",
+    kind: 'Bonus Action', cost: 'slot1', conc: true, rangeFt: 90, target: 'enemy',
+    stats: '1st-level slot · 90 ft · Concentration, up to 1 hour',
+    desc: 'Mark a creature you can see. Your weapon hits against it deal an extra 1d6 Force damage. If it drops to 0 HP, move the mark with a Bonus Action on a later turn.',
+    tip: 'Best opener for long fights: both attacks every turn get +1d6.',
+    visuals: [{ kind: 'marker', color: '#ff5a3c' }],
+  },
+  {
+    id: 'loh', key: 'E', icon: '✚', name: 'Lay on Hands',
+    kind: 'Bonus Action', cost: 'loh', rangeFt: 0, target: 'self',
+    stats: 'Touch · Pool of 30 HP per Long Rest (demo spends 10)',
+    desc: 'Touch a creature and restore any number of HP from your pool. Or spend 5 points to end the Poisoned condition.',
+    tip: 'Even 1 HP gets a downed ally back up. That beats any damage.',
+    visuals: [{ kind: 'ring', at: 'player', radius: 0.9, color: '#5dff8a', fill: true, ttl: 900 }, { kind: 'burst', at: 'player', color: '#5dff8a', ttl: 900 }],
+  },
+  {
+    id: 'vow', key: 'R', icon: '☠', name: 'Vow of Enmity',
+    kind: 'Free (with Attack)', cost: 'cd', rangeFt: 30, target: 'enemy',
+    stats: '1 Channel Divinity · 30 ft · 1 minute',
+    desc: 'When you take the Attack action, swear a vow against a creature you can see. You have Advantage on ALL attack rolls against it for 1 minute. If it drops to 0 HP, transfer the vow for free.',
+    tip: 'Not just the first attack: every swing for the whole minute.',
+    visuals: [{ kind: 'beam', color: '#ff2e2e', ttl: 1200 }, { kind: 'ring', at: 'enemy', radius: 0.9, color: '#ff2e2e', ttl: 10000 }],
+  },
+  {
+    id: 'misty', key: 'D', icon: '≋', name: 'Misty Step',
+    kind: 'Bonus Action', cost: 'slot2', rangeFt: 30, target: 'point',
+    stats: '2nd-level slot · Self · Teleport 30 ft',
+    desc: 'Briefly surrounded by silvery mist, you teleport up to 30 ft to an unoccupied space you can see. Teleporting doesn\'t provoke Opportunity Attacks.',
+    tip: 'Aim with the mouse cursor, then press D.',
+    visuals: [{ kind: 'ring', at: 'origin', radius: 0.8, color: '#cfe8ff', fill: true, ttl: 700 }, { kind: 'ring', at: 'player', radius: 0.8, color: '#cfe8ff', fill: true, ttl: 700 }],
+  },
+  {
+    id: 'steed', key: 'F', icon: '♞', name: 'Faithful Steed (Find Steed)',
+    kind: 'Action', cost: 'steed', rangeFt: 30, target: 'none',
+    stats: 'Free once per Long Rest, else 2nd-level slot · Lasts until 0 HP',
+    desc: 'Summon a Large otherworldly steed (AC 12, 25 HP, Speed 60 ft, Slam +6 for 1d8+2). It shares your initiative and is a controlled mount while you ride it.',
+    tip: 'Cast it BEFORE the fight. Press G next to it to mount.',
+    visuals: [{ kind: 'burst', at: 'steed', color: '#b48cff', ttl: 900 }],
+  },
+  {
+    id: 'mount', key: 'G', icon: '⇅', name: 'Mount / Dismount',
+    kind: 'Movement', cost: 'none', rangeFt: 5, target: 'none',
+    stats: 'Costs half your Speed (15 ft) · Once per turn',
+    desc: 'Mount or dismount a willing creature within 5 ft that is at least one size larger. While mounted you move on the steed\'s 60 ft speed.',
+    tip: 'A ridden steed can only Dash, Disengage or Dodge. It can\'t Slam.',
+    visuals: [],
+  },
+  {
+    id: 'sense', key: 'T', icon: '◉', name: 'Divine Sense',
+    kind: 'Bonus Action', cost: 'cd', rangeFt: 60, target: 'none',
+    stats: '1 Channel Divinity · 60 ft · 10 minutes',
+    desc: 'Know the location and type of any Celestial, Fiend or Undead within 60 ft, and sense consecrated or desecrated places.',
+    tip: 'Shares Channel Divinity with the Vow. Use it only when hunting undead.',
+    visuals: [{ kind: 'ring', at: 'player', radius: 12, color: '#fff3b0', ttl: 1600 }],
+  },
+  {
+    id: 'bless', key: '1', icon: '☀', name: 'Bless',
+    kind: 'Action', cost: 'slot1', conc: true, rangeFt: 30, target: 'none',
+    stats: '1st-level slot · 30 ft · 3 creatures · Concentration, 1 minute',
+    desc: 'Up to three creatures add 1d4 to attack rolls and saving throws.',
+    tip: 'Combined with Aura of Protection: +3 +1d4 on saves.',
+    visuals: [{ kind: 'ring', at: 'player', radius: 6, color: '#ffe680' }],
+  },
+  {
+    id: 'bane', key: '2', icon: '☾', name: 'Bane',
+    kind: 'Action', cost: 'slot1', conc: true, rangeFt: 30, target: 'enemy',
+    stats: '1st-level slot · 30 ft · Cha save DC 14 · Concentration, 1 minute',
+    desc: 'Up to three creatures make a Charisma save. On a failure they subtract 1d4 from attack rolls and saving throws.',
+    tip: 'Use against groups of strong hitters.',
+    visuals: [{ kind: 'ring', at: 'enemy', radius: 1.1, color: '#a35cff', fill: true }],
+  },
+  {
+    id: 'command', key: '3', icon: '!', name: 'Command',
+    kind: 'Action', cost: 'slot1', rangeFt: 60, target: 'enemy',
+    stats: '1st-level slot · 60 ft · Wis save DC 14 · 1 round',
+    desc: 'Speak a one-word command: Approach, Drop, Flee, Grovel (fall Prone) or Halt. On a failed save the target obeys on its next turn.',
+    tip: '"Grovel" knocks it Prone, so melee attacks against it have Advantage.',
+    visuals: [{ kind: 'burst', at: 'enemy', color: '#ffffff', ttl: 600 }],
+  },
+  {
+    id: 'sof', key: '4', icon: '⛨', name: 'Shield of Faith',
+    kind: 'Bonus Action', cost: 'slot1', conc: true, rangeFt: 60, target: 'self',
+    stats: '1st-level slot · 60 ft · Concentration, 10 minutes',
+    desc: 'A shimmering field gives one creature +2 AC (your AC 18 → 20).',
+    tip: 'Uses your bonus action, so no smite or Hunter\'s Mark that turn.',
+    visuals: [{ kind: 'dome', color: '#6ec6ff' }],
+  },
+  {
+    id: 'hold', key: '5', icon: '⛓', name: 'Hold Person',
+    kind: 'Action', cost: 'slot2', conc: true, rangeFt: 60, target: 'enemy',
+    stats: '2nd-level slot · 60 ft · Wis save DC 14 · Concentration, 1 minute',
+    desc: 'A humanoid is Paralyzed. It repeats the save at the end of each of its turns. Your melee hits within 5 ft are automatic Critical Hits.',
+    tip: 'Next turn: walk in, attack twice, smite the crits.',
+    visuals: [{ kind: 'cage', color: '#9fd4ff' }],
+  },
+  {
+    id: 'cure', key: '6', icon: '♥', name: 'Cure Wounds',
+    kind: 'Action', cost: 'slot1', rangeFt: 5, target: 'self',
+    stats: '1st-level slot · Touch · 2d8 + 3 HP',
+    desc: 'A creature you touch regains 2d8 + your Charisma modifier HP.',
+    tip: 'A spell, so it triggers the steed\'s Life Bond. Lay on Hands doesn\'t.',
+    visuals: [{ kind: 'burst', at: 'player', color: '#8dffb0', ttl: 800 }],
+  },
+  {
+    id: 'restore', key: '7', icon: '❖', name: 'Lesser Restoration',
+    kind: 'Bonus Action', cost: 'slot2', rangeFt: 5, target: 'self',
+    stats: '2nd-level slot · Touch',
+    desc: 'End one condition on a creature you touch: Blinded, Deafened, Paralyzed or Poisoned.',
+    tip: 'The Emberthread Bandage does the same as an Action, no slot.',
+    visuals: [{ kind: 'ring', at: 'player', radius: 1.0, color: '#e0f7ff', fill: true, ttl: 800 }],
+  },
+  {
+    id: 'pfeg', key: '8', icon: '✠', name: 'Protection from Evil and Good',
+    kind: 'Action', cost: 'slot1', conc: true, rangeFt: 5, target: 'self',
+    stats: '1st-level slot · Touch · Concentration, 10 minutes',
+    desc: 'Aberrations, Celestials, Elementals, Fey, Fiends and Undead have Disadvantage on attacks against the target. It can\'t be Charmed, Frightened or possessed by them.',
+    tip: 'Use it against a demon or a ghost that would possess someone.',
+    visuals: [{ kind: 'ring', at: 'player', radius: 1.2, color: '#ffffff', fill: true }],
+  },
+  {
+    id: 'flame', key: '9', icon: '✹', name: 'Sacred Flame (cantrip)',
+    kind: 'Action', cost: 'none', rangeFt: 60, target: 'enemy',
+    stats: 'Cantrip · 60 ft · Dex save DC 14 · 2d8 radiant',
+    desc: 'Flame-like radiance falls on a creature you can see. It ignores cover for this save.',
+    tip: 'Ranged fallback when you can\'t reach the enemy. Never waste a turn.',
+    visuals: [{ kind: 'pillar', color: '#ffb347', ttl: 900 }],
+  },
+]
+
+export const PASSIVES = [
+  {
+    id: 'aura', icon: '◌', name: 'Aura of Protection (Level 6)', kind: 'Passive',
+    stats: '10 ft Emanation · Always on',
+    desc: 'You and allies within 10 ft add +3 (your Charisma modifier) to ALL saving throws. Inactive while you are Incapacitated.',
+    tip: 'Your saves: Str +7, Dex +3, Con +5, Int +2, Wis +7, Cha +9.',
+  },
+  {
+    id: 'extra', icon: '⚔', name: 'Extra Attack (Level 5)', kind: 'Passive',
+    stats: 'Two attacks per Attack action',
+    desc: 'You attack twice instead of once whenever you take the Attack action on your turn.',
+    tip: 'Both swings benefit from the Vow and Hunter\'s Mark.',
+  },
+]
+
+export const START_RES = { slot1: 4, slot2: 2, cd: 2, loh: 30, freeSmite: 1, freeSteed: 1 }

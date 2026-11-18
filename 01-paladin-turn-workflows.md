@@ -63,7 +63,7 @@ Hunter's Mark keeps paying out (+1d6 per hit) while you hold concentration. Once
 Even **1 HP** from Lay on Hands gets an unconscious ally back up. Move to them, use your bonus action to heal, then attack whatever is nearby. Save the bulk of the pool for this.
 
 ### 11. Cleanse a condition
-Poisoned? Lay on Hands for 5 points ends it (bonus action). Blinded, deafened or paralyzed? Use the Emberthread Bandage (action, 2d4+2) or Lesser Restoration (action, 2nd-level slot).
+Poisoned? Lay on Hands for 5 points ends it (bonus action). Blinded, deafened or paralyzed? Use the Emberthread Bandage (action, 2d4+2) or Lesser Restoration (bonus action in 2024, 2nd-level slot).
 
 ### 12. Drinking potions (house rule)
 **Action:** drink the whole Potion of Healing for a flat 10 HP. **Bonus action:** gulp it for 2d4+2 and still attack. When you're in trouble but can still swing, take the bonus-action version.
