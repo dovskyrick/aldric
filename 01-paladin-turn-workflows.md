@@ -36,7 +36,7 @@ The notes say "we only attack the first one with advantage." In fact the Vow giv
 **Action:** Attack and declare the Vow on the boss. **Bonus:** Hunter's Mark the same target. Every hit after that deals 1d8+6 +1d6 with Advantage. Use this for long fights.
 
 ### 2. Burst: Vow + Divine Smite
-**Action:** Attack with the Vow. **Bonus (only after a hit):** Divine Smite for +2d8 radiant (3d8 at a 2nd-level slot). You choose after you see the hit, so a smite never misses.
+**Action:** Attack with the Vow. **Bonus (only after a hit):** Divine Smite for +2d8 radiant (4d8 at a 2nd-level slot). You choose after you see the hit, so a smite never misses.
 
 ### 3. Fishing for crits
 Advantage from the Vow roughly doubles your crit chance. On a natural 20, **smite right away**: all the smite dice double. A level-1 slot then deals 4d8 radiant.

@@ -60,10 +60,10 @@ Before the door opens, line the party up so the squishiest allies are within **1
 Your bonus action is free. **Smite on a crit**, or smite when the target is close to dying. Otherwise keep it for Lay on Hands emergencies.
 
 ### Vowed target dies
-Move the Vow to a new creature within 30 ft at **no cost**. Hunter's Mark can move too, but that takes a bonus action on a later turn. Do the Vow first, then decide about the mark.
+Move the Vow to a new creature within 30 ft at **no cost**. Hunter's Mark can move too, but that costs a bonus action. Do the Vow first, then decide about the mark.
 
 ### Paralyzed target (from Path B)
-Get within 5 ft. Both hits are automatic crits: **2 × (2d8+6)**. Smite one of them: a 1st-level slot adds 4d8 and a 2nd-level slot adds 6d8 (crit doubling already counted). That's the biggest damage you can do.
+Get within 5 ft. Both hits are automatic crits: **2 × (2d8+6)**. Smite one of them: a 1st-level slot adds 4d8 and a 2nd-level slot adds 8d8 (crit doubling already counted). That's the biggest damage you can do.
 
 ### Concentration broke
 Don't panic. Ask: is the fight still long? Recast Hunter's Mark (bonus). Is the party struggling with saves? Switch to Bless (action). Only one runs at a time.

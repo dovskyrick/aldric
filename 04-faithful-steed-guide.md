@@ -47,7 +47,7 @@ A Large steed takes up **2×2 squares** and may not fit narrow tunnels or small 
 ## Part 2 — Mounting mechanics
 
 ### Mounting and dismounting
-Once per turn you can mount or dismount a willing creature **within 5 ft** that's at least one size larger. It costs **half your Speed: 15 ft** of your own movement. If you don't have 15 ft left, you can't do it this turn.
+During your move you can mount or dismount a willing creature **within 5 ft** that's at least one size larger. Each time costs **half your Speed: 15 ft** of your own movement. If you don't have 15 ft left, you can't do it this turn.
 
 ### Whose speed do you use?
 While mounted you **move on the steed's 60 ft**, not your own 30 ft. Your own movement only pays for mounting or dismounting. In practice you can mount, then travel 60 ft (or 120 ft with Dash) in the same turn.
@@ -65,7 +65,7 @@ You can split the steed's movement before and after your attacks: ride in 30 ft,
 If the mount provokes an opportunity attack, the attacker can target **either you or the steed**. With only 25 HP and AC 12, the steed is the easier target. Disengage protects both of you.
 
 ### Falling off
-If you're knocked **Prone**, or the steed is moved against its will, make a **DC 10 Dex save** or fall off and land Prone within 5 ft. If the steed itself goes Prone, use your reaction to land on your feet.
+If you're knocked **Prone**, or the steed is moved against its will, make a **DC 10 Dex save** or fall off and land Prone within 5 ft. You make the same save if the steed itself is knocked Prone.
 
 ### Unmounted steed
 When you aren't riding it, the steed takes its own turn on your initiative and can **Slam (+6, 1d8+2)**, move 60 ft and use its bonus action. It's like having an extra party member. Ask your DM how directly you control it.

@@ -15,7 +15,7 @@ export const SKILLS = [
   {
     id: 'smite', key: 'Q', icon: '✦', name: 'Divine Smite',
     kind: 'Bonus Action', cost: 'smite', rangeFt: 5, target: 'enemy',
-    stats: '2d8 radiant (+1d8 per slot level above 1st, +1d8 vs Undead/Fiends)',
+    stats: '2d8 radiant (+2d8 per slot level above 1st, +1d8 vs Undead/Fiends)',
     desc: 'Cast right after you hit a creature with a melee weapon. The first one each Long Rest is free (Paladin\'s Smite); after that it spends a spell slot.',
     tip: 'On a critical hit every smite die is doubled. Save it for crits.',
     visuals: [{ kind: 'burst', color: '#ffd54a', ttl: 700 }, { kind: 'pillar', color: '#ffe680', ttl: 500 }],
@@ -24,7 +24,7 @@ export const SKILLS = [
     id: 'mark', key: 'W', icon: '◎', name: "Hunter's Mark",
     kind: 'Bonus Action', cost: 'slot1', conc: true, rangeFt: 90, target: 'enemy',
     stats: '1st-level slot · 90 ft · Concentration, up to 1 hour',
-    desc: 'Mark a creature you can see. Your weapon hits against it deal an extra 1d6 Force damage. If it drops to 0 HP, move the mark with a Bonus Action on a later turn.',
+    desc: 'Mark a creature you can see. Your attack-roll hits against it deal an extra 1d6 Force damage. If it drops to 0 HP, move the mark with a Bonus Action.',
     tip: 'Best opener for long fights: both attacks every turn get +1d6.',
     visuals: [{ kind: 'marker', color: '#ff5a3c' }],
   },
@@ -63,7 +63,7 @@ export const SKILLS = [
   {
     id: 'mount', key: 'G', icon: '⇅', name: 'Mount / Dismount',
     kind: 'Movement', cost: 'none', rangeFt: 5, target: 'none',
-    stats: 'Costs half your Speed (15 ft) · Once per turn',
+    stats: 'Costs half your Speed (15 ft) each time',
     desc: 'Mount or dismount a willing creature within 5 ft that is at least one size larger. While mounted you move on the steed\'s 60 ft speed.',
     tip: 'A ridden steed can only Dash, Disengage or Dodge. It can\'t Slam.',
     visuals: [],

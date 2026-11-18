@@ -68,7 +68,6 @@ export default function App() {
     if (skill.id === 'mount') {
       const s = G.steed.current, p = G.player.current
       if (!s.summoned) return deny('no steed. Cast Faithful Steed (F) first.')
-      if (turn.mounted) return deny('you can mount or dismount only once per turn.')
       if (!G.mounted.current && Math.hypot(p.x - s.x, p.z - s.z) > 2.2) return deny('move within 5 ft of your steed.')
     }
 
@@ -157,7 +156,7 @@ export default function App() {
     (s.kind === 'Action' && turn.action) || (s.kind === 'Bonus Action' && turn.bonus) ||
     (s.cost === 'slot1' && (turn.slot || res.slot1 <= 0)) || (s.cost === 'slot2' && (turn.slot || res.slot2 <= 0)) ||
     (s.cost === 'cd' && res.cd <= 0) || (s.cost === 'loh' && res.loh <= 0) ||
-    (s.id === 'smite' && !turn.attacked) || (s.id === 'mount' && (turn.mounted || !G.steed.current.summoned))
+    (s.id === 'smite' && !turn.attacked) || (s.id === 'mount' && !G.steed.current.summoned)
 
   const btn = (s, small) => (
     <button key={s.id} className={`skill ${small ? 'small' : ''} ${blocked(s) ? 'blocked' : ''} k-${s.kind.split(' ')[0].toLowerCase()}`}
