@@ -3,7 +3,7 @@ name: Deploy game to GitHub Pages
 on:
   push:
     branches: [main, claude/bold-clarke-8gvk44]
-    paths: ['game/**', '.github/workflows/deploy-game.yml']
+    paths: ['game/**', '*.md', '.github/workflows/deploy-game.yml']
   workflow_dispatch:
 
 permissions:

@@ -1,6 +1,7 @@
 import { useCallback, useEffect, useRef, useState } from 'react'
 import Scene, { ENEMY, ROOM } from './Scene.jsx'
 import { SKILLS, PASSIVES, START_RES } from './skills.js'
+import Help from './Help.jsx'
 
 const FRESH_TURN = { action: false, bonus: false, slot: false, attacked: false, mounted: false }
 const COST_LABEL = { none: '', slot1: '1st', slot2: '2nd', cd: 'CD', loh: 'LoH', smite: '1st*', steed: '2nd*' }
@@ -28,6 +29,8 @@ export default function App() {
   const [hover, setHover] = useState(null)
   const [movedFt, setMovedFt] = useState(0)
   const [mounted, setMounted] = useState(false)
+  const [help, setHelp] = useState(false)
+  const helpRef = useRef(false); helpRef.current = help
 
   const st = useRef({}); st.current = { res, turn, conc }
 
@@ -141,6 +144,11 @@ export default function App() {
 
   useEffect(() => {
     const down = (e) => {
+      if (e.key === 'h' || e.key === 'H' || (e.key === 'Escape' && helpRef.current)) {
+        if (!e.repeat && !e.ctrlKey && !e.metaKey) { e.preventDefault(); setHelp((h) => (e.key === 'Escape' ? false : !h)); G.keys.current = {} }
+        return
+      }
+      if (helpRef.current) return
       if (e.key.startsWith('Arrow')) { G.keys.current[e.key] = true; e.preventDefault(); return }
       if (e.repeat) return
       if (e.code === 'Space') { e.preventDefault(); endTurn(); return }
@@ -193,6 +201,9 @@ export default function App() {
         <div>Enemy distance: <b>{enemyFt()} ft</b></div>
         <button className="rest" onClick={endTurn}>End Turn (Space)</button>
       </div>
+
+      <button className="help-btn" onClick={() => setHelp(true)}>📖 Help &amp; Workflows <b>H</b></button>
+      {help && <Help onClose={() => setHelp(false)} />}
 
       <div className="log">
         {log.map((l) => <div key={l.id} className={l.c}>{l.t}</div>)}
